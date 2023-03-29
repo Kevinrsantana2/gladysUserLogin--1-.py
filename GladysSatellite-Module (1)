@@ -1,0 +1,60 @@
+"""
+     Student: Monique Sotelo
+     Module: GladysSatellite
+     Description: This module opens and reads any of the four data files; Reads latitude, longitude, altitude, and time information; and Returns the data that was read to the gladysUserInterface
+"""
+# start of code by Monique Sotelo
+import io
+import json
+
+sat = json
+
+def readSat(sat, pathToJSONDataFiles):
+
+    # data file path
+    fileName = sat + "-satellite.json"
+    filePath = pathToJSONDataFiles + fileName
+
+    # open the file
+    try:
+        fileHandle = open(filePath)
+    except IOError:
+        print("ERROR: Unable to open the file " + filePath)
+        raise IOError
+
+    # print("filePath = ", filePath)
+
+    # read the file
+    data = json.load(fileHandle)
+
+    return data
+
+def gpsValue(x, y, sat):
+    """
+    function definition here
+    """
+pathToJSONDataFiles = "/gladys-west-map/data"
+
+# read the satellite data
+data = readSat(sat, pathToJSONDataFiles)
+
+location_data = [[] for _ in range(1) ]
+
+for item in data:
+        id_x = item['x']
+        id_y = item['y'] # not really needed as lists are ordered
+        value = item['value']
+
+        location_data[id_x].append(value)
+        location_data[x][y]
+
+if __name__ == '__main__':
+
+    readSat("altitude")
+    readSat("time")
+
+    assert gpsValue(0, 2, 'time') == 449
+    assert gpsValue(0, 3, 'longitude') == 385
+    assert gpsValue(0, 1, 'latitude') == 890
+    assert gpsValue(0, 0, 'altitude') == 473
+# end of code by Monique Sotelo
